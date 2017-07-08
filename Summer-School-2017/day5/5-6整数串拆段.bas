@@ -1,0 +1,41 @@
+DIM AS STRING S,MAX,M,B
+DIM AS INTEGER LS,K,I,J,C,SUM
+INPUT S,K
+LS=LEN(S)
+DIM AS STRING A(LS)
+FOR I=1 TO LS
+    A(I)=MID(S,I,1)
+NEXT I
+J=1
+MAX=A(J)
+FOR I=2 TO LS
+    IF A(I)>MAX THEN J=I:MAX=A(I)
+NEXT I
+C=LS-K
+M=MID(S,J,C)
+SUM=0
+I=1
+IF I<>J THEN 
+    B=MID(S,I,1)
+    PRINT B;
+    SUM=SUM+VAL(B)
+ELSE 
+    I=I+C
+    PRINT M;
+    SUM=SUM+VAL(M)
+END IF
+DO WHILE I<=LS
+    IF I<>J THEN
+        B=MID(S,I,1)
+        PRINT "+";B;
+        SUM=SUM+VAL(B)
+        i=i+1
+    ELSE
+        PRINT "+";M;
+        SUM=SUM+VAL(M)
+        I=I+C+1
+    END IF
+LOOP
+PRINT "=";SUM
+SLEEP
+END

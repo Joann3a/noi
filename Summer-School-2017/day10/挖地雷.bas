@@ -1,0 +1,36 @@
+DIM AS STRING FN
+INPUT FN
+OPEN FN FOR INPUT AS #1
+INPUT #1,N
+DIM AS INTEGER A(N),B(N,N),C(N),D(N)
+FOR I=1 TO N
+    INPUT #1,A(I)
+NEXT I
+FOR I=1 TO N
+    C(I)=0
+    FOR J=I TO N
+        INPUT #1,B(I,J)
+    NEXT J
+NEXT I
+A(0)=0
+FOR I=N TO 1 STEP-1
+    MAX=0    
+    Y=-1
+    FOR J=I TO N
+        IF B(I,J)=1 AND (A(J)>A(MAX) OR Y=-1) THEN MAX=J:Y=0
+    NEXT J
+    D(I)=A(I)+D(MAX)
+    C(I)=MAX
+NEXT I
+K=0
+FOR I=1 TO N
+    IF D(I)>D(K) THEN K=I
+NEXT I  
+PRINT "MAX=";D(K)
+PRINT K;
+DO WHILE C(K)<>0
+    K=C(K)
+    PRINT "-->";K;
+LOOP
+SLEEP
+END
