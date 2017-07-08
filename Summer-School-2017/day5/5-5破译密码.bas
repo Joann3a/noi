@@ -1,0 +1,26 @@
+DIM AS STRING A,X
+DIM AS INTEGER LA,P,M,K,I
+READ A
+DATA "42,53,32.94,79.17,-13.41,49,105.30,19,53,18"
+LA=LEN(A)
+P=LA
+DO WHILE MID(A,P,1)<>","
+    P=P-1
+LOOP
+M=VAL(MID(A,P+1))
+A=LEFT(A,P)
+K=0
+FOR I=1 TO P
+    X=MID(A,I,1)
+    IF X<>"," AND X<>"." THEN
+        K=K*10+VAL(X)
+    ELSE
+        K=K-M
+        DO WHILE K<=0:K=K+26:LOOP
+        DO WHILE K>26:K=K-26:LOOP
+        PRINT CHR(K+64);
+        IF X="." THEN PRINT " ";
+        K=0
+    END IF
+NEXT I
+SLEEP

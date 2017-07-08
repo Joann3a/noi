@@ -1,0 +1,43 @@
+DECLARE FUNCTION PRIME(X AS INTEGER)AS INTEGER
+DIM AS INTEGER K,QUIT,X,A(5)
+DIM AS INTEGER I,S,C,D,P,Q,H
+DIM AS STRING T
+
+FOR K=2 TO 99997 
+    T=STR(K):QUIT=0
+    FOR I=0 TO 5:A(I)=0:NEXT I
+    FOR I=1 TO LEN(T)
+        A(I)=VAL(MID(T,I,1))
+        IF A(I)MOD 2=0 OR A(I) MOD 5=0 THEN QUIT=-1
+    NEXT I
+    DO WHILE A(0)=0
+        S=0
+        FOR I=1 TO LEN(T)
+            S=S*10+A(I)
+        NEXT I
+        IF PRIME(S)=0 THEN QUIT=-1:EXIT DO
+        C=LEN(T)
+        DO WHILE A(C-1)>=A(C):C=C-1:LOOP
+        D=LEN(T)
+        DO WHILE A(C-1)>=A(D):D=D-1:LOOP
+        SWAP A(C-1),A(D)
+        FOR P=C TO LEN(T)-1
+            FOR Q=P+1 TO LEN(T)
+                IF A(P)>A(Q) THEN SWAP A(P),A(Q)
+            NEXT Q
+        NEXT P
+    LOOP
+    IF QUIT=0 THEN
+        PRINT K,
+    END IF
+NEXT K
+SLEEP
+
+FUNCTION PRIME(X AS INTEGER)AS INTEGER
+    DIM AS INTEGER H
+    PRIME=-1
+    FOR H=2 TO SQR(X)
+        IF X MOD H=0 THEN PRIME=0:EXIT FOR
+    NEXT H
+    IF X=1 THEN PRIME =0
+END FUNCTION

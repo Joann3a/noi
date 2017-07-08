@@ -1,0 +1,26 @@
+DIM AS INTEGER N,M,I,G,K,F,X
+INPUT "N=";N
+DIM AS INTEGER A(1000),B(9)
+M=0
+A(1)=1
+DO
+    M=M+1
+    G=0
+    FOR I=1 TO 1000
+        X=A(I)*N+G
+        G=X\10
+        A(I)=X MOD 10
+    NEXT I
+    K=1000
+    DO WHILE A(K)=0:K=K-1:LOOP
+    FOR I=0 TO 9:B(I)=0:NEXT I
+    FOR I=1 TO K
+        B(A(I))=B(A(I))+1
+    NEXT I
+    F=-1
+    FOR I=0 TO 9
+        IF B(I)=0 THEN F=0
+    NEXT I
+LOOP UNTIL F=-1 OR M>32767
+IF M<=32767 THEN PRINT M ELSE PRINT "ERROR!"
+SLEEP

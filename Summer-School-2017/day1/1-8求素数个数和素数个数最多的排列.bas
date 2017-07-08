@@ -1,0 +1,55 @@
+INPUT "N,K=";N,K
+DIM AS INTEGER A(N)
+FOR I=1 TO N
+    A(I)=I
+NEXT I
+SUM=0
+FOR I=1 TO N
+    S=0
+    FOR J=1 TO K
+        S=S*10+A((I+J-2)MOD N+1)
+    NEXT J
+    F=-1
+    FOR J=2 TO SQR(S)
+        IF S MOD J=0 THEN F=0
+    NEXT J
+    IF F=-1 THEN SUM=SUM+1
+NEXT I
+PRINT "X1=";SUM
+GOSUB 1234
+PRINT "X2=";MAX
+SLEEP
+END
+
+1234:
+MAX=SUM
+DO WHILE A(0)=0
+    GOSUB 5678
+    IF SUM>MAX THEN MAX=SUM
+    K=N
+    DO WHILE A(K-1)>=A(K):K=K-1:LOOP
+    J=N
+    DO WHILE A(K-1)>=A(J):J=J-1:LOOP
+    SWAP A(K-1),A(J)
+    FOR P=K TO N-1
+        FOR Q=P+1 TO N
+            IF A(P)>A(Q) THEN SWAP A(P),A(Q)
+        NEXT Q
+    NEXT P
+LOOP
+RETURN 
+
+5678:
+SUM=0
+FOR I=1 TO N
+    S=0
+    FOR J=1 TO K
+        S=S*10+A((I+J-2)MOD N+1)
+    NEXT J
+    F=-1
+    FOR J=2 TO SQR(S)
+        IF S MOD J=0 THEN F=0
+    NEXT J
+    IF F=-1 THEN SUM=SUM+1 
+NEXT I
+RETURN 
