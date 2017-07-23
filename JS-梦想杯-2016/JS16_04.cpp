@@ -1,3 +1,4 @@
+//Author: Calvin Wang
 #include <cstdio>
 #include <iostream>
 #include <algorithm>
@@ -12,6 +13,7 @@ int main()
 	int i,n,s;
 	cin>>n>>s;
 	
+	//init the string1 and the string2 
 	R[0]=s;
 	for(i=1;i<=n;i++) 
 	{
@@ -26,6 +28,8 @@ int main()
 		S2[i-n]='a'+R[i]%26; 
 		cout << S2[i-n]; 
 	}
+	//get the answer
+	//... 
 
 	return 0;
 }
